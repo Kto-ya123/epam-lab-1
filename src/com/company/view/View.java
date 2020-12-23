@@ -13,8 +13,6 @@ import java.util.List;
  * @author Artsiom Mazhylouski
  */
 public interface View {
-    String getPageName();
-
     String execute() throws IOException;
 
     void setCommandDefinitions(List<CommandDefinition> commandDefinitions);

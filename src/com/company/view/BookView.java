@@ -1,10 +1,8 @@
 package com.company.view;
 
-import com.company.command.Command;
 import com.company.command.CommandDefinition;
 import com.company.command.CommandService;
 import com.company.controller.BookController;
-import com.company.model.authentication.AuthenticationUser;
 import com.company.model.dao.Book;
 
 import java.io.IOException;
@@ -30,11 +28,6 @@ public class BookView extends BaseClassView {
 
     public BookView(BookController bookController) {
         this.bookController = bookController;
-    }
-
-    @Override
-    public String getPageName() {
-        return CommandService.BOOK_PAGE;
     }
 
     @Override

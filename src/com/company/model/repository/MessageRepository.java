@@ -1,6 +1,8 @@
 package com.company.model.repository;
 
-import com.company.model.dao.*;
+import com.company.model.dao.Book;
+import com.company.model.dao.Message;
+import com.company.model.dao.MessageType;
 import com.company.model.utils.StorageReaderUtil;
 import com.company.model.utils.StorageWriterUtil;
 
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
  * @author Artsiom Mazhylouski
  */
 public class MessageRepository {
-    private static final String fieldSeparator = "\n";
+    private static final String fieldSeparator = "\r\n";
     private final String mailStoragePath;
 
     public MessageRepository(String mailStoragePath) {

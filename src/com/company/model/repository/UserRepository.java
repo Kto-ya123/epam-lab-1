@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author Artsiom Mazhylouski
  */
 public class UserRepository {
-    private static final String fieldSeparator = "\n";
+    private static final String fieldSeparator = "\r\n";
     private final String userStoragePath;
 
     public UserRepository(String userStoragePath) {

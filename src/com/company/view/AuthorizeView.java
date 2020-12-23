@@ -19,11 +19,6 @@ public class AuthorizeView implements View {
     }
 
     @Override
-    public String getPageName() {
-        return null;
-    }
-
-    @Override
     public String execute() throws IOException {
         for(int i = 0; i < 3; i++) {
             Map<String, String> arguments = new HashMap<>();

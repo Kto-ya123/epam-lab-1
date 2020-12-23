@@ -2,7 +2,6 @@ package com.company.model.utils;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 /**
  *  StorageReaderUtil.
@@ -10,7 +9,7 @@ import java.util.List;
  * @author Artsiom Mazhylouski
  */
 public class StorageReaderUtil {
-    private static final String recordSeparator  = "\n\n";
+    private static final String recordSeparator  = "\r\n\r\n";
 
     public static String[] readFile(String storagePath) throws IOException {
         try(FileReader reader = new FileReader(storagePath))

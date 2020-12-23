@@ -5,7 +5,6 @@ import com.company.controller.MessageController;
 import com.company.model.dao.Message;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * MailView.
@@ -17,11 +16,6 @@ public class MailView extends BaseClassView {
 
     public MailView(MessageController messageController) {
         this.messageController = messageController;
-    }
-
-    @Override
-    public String getPageName() {
-        return CommandService.EMAIL_PAGE;
     }
 
     @Override

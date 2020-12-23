@@ -11,7 +11,7 @@ import java.util.List;
  * @author Artsiom Mazhylouski
  */
 public class StorageWriterUtil {
-    private static final String recordSeparator = "\n\n";
+    private static final String recordSeparator = "\r\n\r\n";
 
     public static void writeRecord(String storagePath, String record) {
         try (FileWriter writer = new FileWriter(storagePath, true)) {

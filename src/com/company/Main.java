@@ -23,11 +23,17 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        if(args.length < 3){
-            throw new Exception("args not valid");
+        if(args.length < 1){
+            throw new Exception("Неверные аргументы");
         }
 
-        buildApplication(args[0], args[1], args[2]).startApplication();
+
+
+        String bookPath = args[0] + "\\resources\\books.txt";
+        String usersPath = args[0] + "\\resources\\users.txt";
+        String emailPath = args[0] + "\\resources\\email.txt";
+
+        buildApplication(bookPath, usersPath, emailPath).startApplication();
     }
 
     private static ViewExecutor buildApplication(String booksPath, String usersPath, String mailPath){

@@ -1,12 +1,10 @@
 package com.company.view;
 
-import com.company.command.Command;
 import com.company.command.CommandDefinition;
 import com.company.command.CommandService;
 import com.company.controller.MainController;
 import com.company.model.authentication.AuthenticationService;
 import com.company.model.authentication.AuthenticationUser;
-import com.company.model.dao.Role;
 
 import java.io.IOException;
 import java.util.List;

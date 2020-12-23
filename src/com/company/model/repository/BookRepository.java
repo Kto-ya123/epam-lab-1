@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author Artsiom Mazhylouski
  */
 public class BookRepository {
-    private static final String fieldSeparator = "\n";
+    private static final String fieldSeparator = "\r\n";
     private final String bookStoragePath;
 
     public BookRepository(String bookStoragePath) {
