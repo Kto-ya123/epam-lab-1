@@ -1,5 +1,10 @@
 package com.company.model.dao;
 
+/**
+ *  User.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class User {
     private String email;
     private String password;

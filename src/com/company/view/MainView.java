@@ -1,41 +1,53 @@
 package com.company.view;
 
-import com.company.controller.MainController;
-import com.company.model.dao.Book;
+import com.company.command.Command;
+import com.company.command.CommandDefinition;
+import com.company.command.CommandService;
+import com.company.model.authentication.AuthenticationUser;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-public class MainView {
-    private final MainController mainController;
-
-    public MainView(MainController mainController) {
-        this.mainController = mainController;
+/**
+ * MainView.
+ *
+ * @author Artsiom Mazhylouski
+ */
+public class MainView extends BaseClassView {
+    public MainView() {
     }
 
-    public void start() throws Exception {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите ваш email: ");
-        String email = in.nextLine();
-        System.out.print("Введите ваш password: ");
-        String password = in.nextLine();
+    @Override
+    public String getPageName() {
+        return CommandService.MAIN_PAGE;
+    }
 
-        if(!mainController.authorizeUser(email, password)){
-            System.out.print("Вы не прошли авторизацию");
-        }else {
-            printBooks(mainController.getBooks());
+    @Override
+    public String execute(){
+        clearScreen();
+        printHeader();
+        System.out.println("\n");
+        printCommands();
+        System.out.println("\n\n");
+
+        CommandDefinition answer = getAnswer();
+        switch (answer.getName()){
+            case CommandService.OPEN_MAIL:{
+                return CommandService.EMAIL_PAGE;
+            }
+
+            case CommandService.GET_BOOKS:{
+                return CommandService.BOOK_PAGE;
+            }
+
+            case CommandService.QUIT:{
+                return null;
+            }
+
+            default: return null;
         }
-
-        System.in.read();
-
     }
-
-    public void printBooks(List<Book> bookList){
-        System.out.println("*********** All Books ************");
-        bookList.forEach(book -> {
-            System.out.println("ISBN: " + book.getIsbn() + "  Name: " + book.getName());
-        });
-    }
-
 }

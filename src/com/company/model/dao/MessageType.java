@@ -1,11 +1,11 @@
 package com.company.model.dao;
 
 /**
- *  Role.
+ *  MessageType.
  *
  * @author Artsiom Mazhylouski
  */
-public enum Role {
-    USER,
-    ADMIN
+public enum MessageType {
+    NOTIFICATION,
+    OFFER
 }

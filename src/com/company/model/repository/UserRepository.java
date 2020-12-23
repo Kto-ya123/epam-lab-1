@@ -1,6 +1,5 @@
 package com.company.model.repository;
 
-import com.company.model.dao.Book;
 import com.company.model.dao.Role;
 import com.company.model.dao.User;
 import com.company.model.utils.StorageReaderUtil;
@@ -10,8 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * UserRepository.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class UserRepository {
-    private static final String fieldSeparator = "\r\n";
+    private static final String fieldSeparator = "\n";
     private final String userStoragePath;
 
     public UserRepository(String userStoragePath) {

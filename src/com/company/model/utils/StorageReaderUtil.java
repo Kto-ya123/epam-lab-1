@@ -4,8 +4,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *  StorageReaderUtil.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class StorageReaderUtil {
-    private static final String recordSeparator  = "\r\n\r\n";
+    private static final String recordSeparator  = "\n\n";
 
     public static String[] readFile(String storagePath) throws IOException {
         try(FileReader reader = new FileReader(storagePath))
@@ -17,7 +22,14 @@ public class StorageReaderUtil {
             while((length = reader.read(buffer))>0){
                 storageBuilder.append(buffer, 0, length);
             }
-            return storageBuilder.toString().split(recordSeparator);
+
+            String storage = storageBuilder.toString();
+
+            if(storage.isEmpty()){
+                return new String[]{};
+            }else {
+                return storage.split(recordSeparator);
+            }
         }
         catch(IOException ex){
             throw ex;

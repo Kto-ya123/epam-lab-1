@@ -2,6 +2,11 @@ package com.company.model.authentication;
 
 import com.company.model.dao.Role;
 
+/**
+ * AuthenticationUser.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class AuthenticationUser {
     private String userName;
     private Role role;

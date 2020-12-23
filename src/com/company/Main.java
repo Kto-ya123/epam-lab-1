@@ -1,35 +1,55 @@
 package com.company;
 
+import com.company.command.CommandService;
+import com.company.controller.BookController;
 import com.company.controller.MainController;
+import com.company.controller.MessageController;
 import com.company.model.authentication.AuthenticationService;
-import com.company.model.dao.Book;
-import com.company.model.dao.User;
 import com.company.model.repository.BookRepository;
+import com.company.model.repository.MessageRepository;
 import com.company.model.repository.UserRepository;
 import com.company.model.service.BookService;
-import com.company.view.MainView;
+import com.company.model.service.MessageService;
+import com.company.view.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * Main.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        if(args.length < 2){
+        if(args.length < 3){
             throw new Exception("args not valid");
         }
 
-        MainView mainView = buildApplication(args[0], args[1]);
-        mainView.start();
+        buildApplication(args[0], args[1], args[2]).startApplication();
     }
 
-    private static MainView buildApplication(String booksPath, String usersPath){
+    private static ViewExecutor buildApplication(String booksPath, String usersPath, String mailPath){
         BookRepository bookRepository = new BookRepository(booksPath);
         UserRepository userRepository = new UserRepository(usersPath);
-        BookService bookService = new BookService(bookRepository);
+        MessageRepository messageRepository = new MessageRepository(mailPath);
+        MessageService messageService = new MessageService(messageRepository);
         AuthenticationService authenticationService = new AuthenticationService(userRepository);
-        MainController mainController = new MainController(bookService, authenticationService);
-        MainView mainView = new MainView(mainController);
+        BookService bookService = new BookService(bookRepository, authenticationService, messageService);
+        CommandService commandService = new CommandService();
+        MainController mainController = new MainController(authenticationService);
+        BookController bookController = new BookController(bookService, messageService, authenticationService);
+        MessageController messageController = new MessageController(messageService, authenticationService);
 
-        return mainView;
+        Map<String, View> views = new HashMap<>();
+        views.put(CommandService.AUTHORIZE_PAGE, new AuthorizeView(mainController));
+        views.put(CommandService.MAIN_PAGE, new MainView());
+        views.put(CommandService.BOOK_PAGE, new BookView(bookController));
+        views.put(CommandService.EMAIL_PAGE, new MailView(messageController));
+
+        ViewExecutor viewExecutor = new ViewExecutor(views, authenticationService, commandService, mainController);
+
+        return viewExecutor;
     }
 }

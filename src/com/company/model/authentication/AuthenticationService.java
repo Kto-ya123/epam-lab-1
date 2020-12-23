@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * AuthenticationService.
+ *
+ * @author Artsiom Mazhylouski
+ */
 public class AuthenticationService {
     private AuthenticationUser authUser;
     private final UserRepository userRepository;
